@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_notification1"
+        android:icon="@drawable/menu"
+        android:title="action_notification"
+        app:showAsAction="always">
+        <menu>
+
+             <item
+                android:id="@+id/rate_app"
+                android:orderInCategory="100"
+                android:icon="@drawable/star"
+                android:title="@string/rate_this_app" />
+
+            <item
+                android:id="@+id/share_app"
+                android:orderInCategory="100"
+                android:icon="@drawable/share"
+                android:title="@string/share_app" />
+
+            <item
+                android:id="@+id/developer"
+                android:orderInCategory="100"
+                android:icon="@drawable/person"
+                android:title="@string/developer" />
+
+            <item
+                android:id="@+id/app_info"
+                android:orderInCategory="100"
+                android:icon="@drawable/info"
+                android:title="@string/app_info" />
+
+            <item
+                android:id="@+id/mode"
+                android:orderInCategory="100"
+                android:title="@string/mode" />
+
+        </menu>
+    </item>
+
+
+</menu>
