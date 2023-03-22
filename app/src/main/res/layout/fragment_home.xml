@@ -7,31 +7,11 @@
     android:background="@color/colorPrimaryDark"
     tools:context=".fragments.HomeFragment">
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/logo"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="10dp"
-        android:src="@drawable/logo" />
-
-
-    <TextView
-        android:id="@+id/textViewLine"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/logo"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="10dp"
-        android:text="@string/how_to_use_message"
-        android:textSize="15sp" />
-
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardViewTwo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/textViewLine"
         app:cardBackgroundColor="@color/colorPrimary"
         app:cardCornerRadius="10dp"
         app:cardElevation="15dp"
@@ -41,6 +21,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textViewLine"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/logo"
+                android:layout_centerHorizontal="true"
+                android:layout_margin="10dp"
+                android:text="@string/how_to_use_message"
+                android:textSize="15sp" />
+
 
             <com.hbb20.CountryCodePicker
                 android:id="@+id/ccp"

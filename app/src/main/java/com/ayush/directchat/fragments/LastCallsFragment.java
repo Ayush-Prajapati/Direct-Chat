@@ -1,5 +1,8 @@
 package com.ayush.directchat.fragments;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -49,6 +52,8 @@ public class LastCallsFragment extends Fragment {
         adapter.setOnItemClickListener(new CallsLogsAdapter.OnClick() {
             @Override
             public void OnClick(int position) {
+                String number = callsModelArrayList.get(position).getNumber();
+                onClickCopy(number);
 
             }
 
@@ -64,7 +69,7 @@ public class LastCallsFragment extends Fragment {
     private void getCallList() {
         callsModelArrayList.clear();
 
-        if (ActivityCompat.checkSelfPermission(Objects.requireNonNull(getContext()), READ_CALL_LOG) != PackageManager.PERMISSION_GRANTED) {
+        if (ActivityCompat.checkSelfPermission(requireContext(), READ_CALL_LOG) != PackageManager.PERMISSION_GRANTED) {
             return;
         }
 
@@ -109,28 +114,27 @@ public class LastCallsFragment extends Fragment {
 
     private void sendData(String number){
 
-        Boolean installed = appInstalledOrNot();
-
-        if (installed){
-            Uri uri = Uri.parse("https://api.whatsapp.com/send?phone=" + number + "&text=" + "");
-            Intent sendIntent = new Intent(Intent.ACTION_VIEW, uri);
-            sendIntent.setPackage("com.whatsapp");
-            startActivity(sendIntent);
-        }else {
-            Toast.makeText(getContext(), "Whatsapp not Installed on  your device.", Toast.LENGTH_SHORT).show();
-        }
+        startActivity(
+                new Intent(Intent.ACTION_VIEW,
+                        Uri.parse(
+                                String.format("https://api.whatsapp.com/send?phone=%s&text=%s", number, "")
+                        )
+                )
+        );
     }
 
-    private Boolean appInstalledOrNot(){
-        PackageManager packageManager = Objects.requireNonNull(getActivity()).getPackageManager();
-        boolean app_installed;
-        try {
-            packageManager.getPackageInfo("com.whatsapp",PackageManager.GET_ACTIVITIES);
-            app_installed = true;
-        }catch (PackageManager.NameNotFoundException e){
-            app_installed = false;
+    private void onClickCopy(String string) {
+
+        ClipboardManager clipboard = (ClipboardManager) Objects.requireNonNull(requireActivity()).getSystemService(Context.CLIPBOARD_SERVICE);
+        ClipData clip = ClipData.newPlainText("simple text", string);
+        if (clipboard != null) {
+            clipboard.setPrimaryClip(clip);
         }
-        return  app_installed;
+        Toast.makeText(getContext(), "copied" + " " + string, Toast.LENGTH_SHORT).show();
+
+
     }
+
+
 
 }

@@ -13,6 +13,7 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import com.ayush.directchat.fragments.HomeFragment;
+import com.ayush.directchat.fragments.LastCallsFragment;
 import com.ayush.directchat.fragments.MenuFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -46,7 +47,7 @@ public class HomeActivity extends AppCompatActivity implements InAppUpdateManage
         MainAdapter adapter = new MainAdapter(getSupportFragmentManager());
 
         adapter.AddFragment(new HomeFragment(),"Home");
-       // adapter.AddFragment(new LastCallsFragment(),"Recent calls");
+        adapter.AddFragment(new LastCallsFragment(),"Recent calls");
         adapter.AddFragment(new MenuFragment(),"Settings");
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);

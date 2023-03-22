@@ -1,23 +1,25 @@
 package com.ayush.directchat;
 
+import static android.Manifest.permission.READ_CALL_LOG;
+
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.ayush.directchat.Utility.StorageUtil;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+
 
 public class SplashScreen extends AppCompatActivity {
 
-    //private static final int READ_CALL = 54;
+    private static final int READ_CALL = 54;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,11 +33,11 @@ public class SplashScreen extends AppCompatActivity {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         }
 
-        //checkPermission();
-        openHomeActivity();
+        checkPermission();
+       // openHomeActivity();
     }
 
-   /* private void checkPermission(){
+   private void checkPermission(){
 
         if (ContextCompat.checkSelfPermission(getApplicationContext(), READ_CALL_LOG) == PackageManager.PERMISSION_GRANTED){
             openHomeActivity();
@@ -72,7 +74,7 @@ public class SplashScreen extends AppCompatActivity {
         } else {
             super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         }
-    }*/
+    }
 
     private void openHomeActivity() {
         Intent intent = new Intent(SplashScreen.this,HomeActivity.class);

@@ -48,7 +48,7 @@ public class HomeFragment extends Fragment {
            if (isValidNumber){
                if (storage.getIsDemo()){
                    storage.setIsDemo(false);
-                   new MaterialTapTargetPrompt.Builder(Objects.requireNonNull(getActivity()))
+                   new MaterialTapTargetPrompt.Builder(getActivity())
                            .setTarget(R.id.sendButton)
                            .setPrimaryText("Click here to open the entered mobile number in WhatsApp.")
                            .show();
@@ -72,7 +72,7 @@ public class HomeFragment extends Fragment {
         super.onStart();
         storage = new StorageUtil(getContext());
         if (storage.getIsDemo()){
-            new MaterialTapTargetPrompt.Builder(Objects.requireNonNull(getActivity()))
+            new MaterialTapTargetPrompt.Builder(getActivity())
                     .setTarget(R.id.editText_carrierNumber)
                     .setPrimaryText("How to use.")
                     .setSecondaryText("Enter the mobile number of the person you want to chat with.")
@@ -105,6 +105,8 @@ public class HomeFragment extends Fragment {
         EditText editTextCarrierNumber = view.findViewById(R.id.editText_carrierNumber);
         editTextMsg = view.findViewById(R.id.editTextMsg);
         btnSend = view.findViewById(R.id.sendButton);
+
+        editTextCarrierNumber.requestFocus();
 
         ccp.setContentColor(getResources().getColor(R.color.colorAccent));
         ccp.setDialogBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));

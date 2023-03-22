@@ -3,6 +3,7 @@
     package="com.ayush.directchat">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_CALL_LOG"></uses-permission>
 
     <application
         android:allowBackup="true"
@@ -19,7 +20,8 @@
             android:theme="@style/LicensesTheme" />
         <activity
             android:name=".SplashScreen"
-            android:theme="@style/SplashTheme">
+            android:theme="@style/SplashTheme"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -28,7 +30,8 @@
         </activity>
         <activity
             android:name=".HomeActivity"
-            android:windowSoftInputMode="adjustResize">
+            android:windowSoftInputMode="adjustResize"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
